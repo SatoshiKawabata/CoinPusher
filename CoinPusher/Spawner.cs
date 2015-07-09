@@ -2,26 +2,26 @@
 using System.Collections;
 
 public class Spawner : MonoBehaviour {
-
-	public Transform prefab;
+	private GameObject manager;
+	private bool isGameOver;
 
 	// Use this for initialization
 	void Start () {
-		
+		isGameOver = false;
+		manager = GameObject.Find ("GameManager");
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Fire1") 
-		    && Score.score > 0) { 
-			float halfWidth = Screen.width * 0.5f;
-			float dist = (Input.mousePosition.x - halfWidth) * 0.01f;
-			Vector3 spawnPos = transform.position;
-			spawnPos.x += dist;
-			Instantiate(prefab, spawnPos, transform.rotation);
-
-			Score.score--;
+		if (! isGameOver
+		    && Input.GetButtonDown ("Fire1")) { 
+			// send spawn coin
+			manager.SendMessage("spawnCoin");
 		}
+	}
+
+	public void onGameOver() {
+		isGameOver = true;
 	}
 }

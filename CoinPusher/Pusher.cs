@@ -15,7 +15,7 @@ public class Pusher : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		count += 0.01f;
+		count += 0.02f;
 		float offset = Mathf.Sin (count);
 		Vector3 offsetPos = new Vector3 (0, 0, offset);
 

@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Getter : MonoBehaviour {
 
+	private GameObject manager;
 	// Use this for initialization
 	void Start () {
-	
+		manager = GameObject.Find ("GameManager");
 	}
 	
 	// Update is called once per frame
@@ -14,7 +15,7 @@ public class Getter : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Score.score += 3;
+		manager.SendMessage ("getCoin", other);
 		Destroy(other.gameObject);
 	}
 }
